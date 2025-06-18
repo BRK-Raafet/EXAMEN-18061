@@ -1,0 +1,5 @@
+
+Générer une nouvelle paire de clés RSA protégée avec l’algorithme DES3.
+Extraire la clé publique de cette nouvelle clé privée. Quelle différence remarque-t-on ?
+
+On remarque l'ajout d'un mot de passe pour extraire la clé
