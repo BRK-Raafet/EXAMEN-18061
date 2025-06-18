@@ -1,0 +1,51 @@
+ Calculer le condensat de votre fichier avec openssl pour les trois algorithmes suivants : sha256,
+md5 et sha-1. 
+
+
+PS C:\Users\bouke\Downloads\davavance\tp note\EX3> openssl dgst -sha256 main.js
+SHA256(main.js)= a15002cef81031402265860b5b01ef3adeeb6e5f11ec9645b93261f4c1edf349
+PS C:\Users\bouke\Downloads\davavance\tp note\EX3> openssl dgst -md5 main.js
+MD5(main.js)= 9f3f12f51c5f6397c9346d134b33bfa5
+PS C:\Users\bouke\Downloads\davavance\tp note\EX3> openssl dgst -sha1 main.js
+SHA1(main.js)= 7ee04bb8a1a6fe66add13a3ca5ad97520108926f
+
+
+
+
+
+
+Déterminer avec l’affichage la taille de l’empreinte en nombre de bits pour md5
+et sha-1.
+
+MD5 : 128 bits
+SHA-1 : 160 bits
+
+
+¨ Pratiquer la signature de ce fichier à l’aide de votre première clé privée généré à l’exercice 1, et
+nommer la sortie sous la forme nomDeFichier.sign. Confirmer la signature avec la clé publique
+correspondante. Le retour de la commande doit afficher : Verified OK.
+¨ Pour simuler un problème d’usurpation d’identité, relancer la commande de vérification en
+utilisant votre deuxième clé publique. De même, pour simuler un problème d’intégrité sur votre
+fichier source, faites une modification de votre fichier source, et relancer la commande de
+vérification en réutilisant votre première clé. Confirmer que la signature ne correspond pas au
+fichier source.
+
+
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Tous droits réservés.
+
+Installez la dernière version de PowerShell pour de nouvelles fonctionnalités et améliorations ! https://aka.ms/PSWindows
+
+PS C:\Users\bouke\Downloads\davavance\tp note> openssl dgst -sha256 -sign server.key -out test.txt.sign main.js
+PS C:\Users\bouke\Downloads\davavance\tp note> openssl dgst -sha256 -verify server.pub -signature test.txt.sign main.js
+Verified OK
+PS C:\Users\bouke\Downloads\davavance\tp note> openssl dgst -sha256 -verify server_encrypted.pub -signature test.txt.sign main.js
+Can't open server_encrypted.pub for reading, No such file or directory
+23424:error:02001005:system library:fopen:Input/output error:crypto/bio/bss_file.c:69:fopen('C:\OpenSSL-1.1.1h_win32','rb')
+23424:error:2006D002:BIO routines:BIO_new_file:system lib:crypto/bio/bss_file.c:78:
+23424:error:0E078002:configuration file routines:def_load:system lib:crypto/conf/conf_def.c:170:
+23424:error:02001002:system library:fopen:No such file or directory:crypto/bio/bss_file.c:69:fopen('server_encrypted.pub','r')
+23424:error:2006D080:BIO routines:BIO_new_file:no such file:crypto/bio/bss_file.c:76:
+unable to load key file
+PS C:\Users\bouke\Downloads\davavance\tp note>
